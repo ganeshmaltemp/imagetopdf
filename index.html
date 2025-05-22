@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image to PDF Converter - Free & Easy Online Tool</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="header-main-content">
+      <div class="site-branding">
+        <a href="/" class="site-logo-link">
+          <img src="assets/logo.png" alt="Image to PDF Converter Logo" class="site-logo" />
+          <h1>Image to PDF Converter
+            <span class="h1-tagline">
+              (Free & Easy Online Tool)
+              <span class="h1-description">Convert your JPG, PNG, and other images to high-quality PDF documents quickly
+                and securely.</span>
+            </span>
+          </h1>
+        </a>
+        <!-- <p class="tagline">Convert your JPG, PNG, and other images to high-quality PDF documents quickly and securely.</p> -->
+      </div>
+      <nav class="main-nav">
+        <a href="about.html">About Us</a>
+      </nav>
+    </div>
+    <div class="ad-container top-banner"></div>
+  </header>
+
+  <main>
+    <p class="main-intro-text">Select one or more images to convert to PDF.</p>
+
+    <div id="uploadMessageContainer"></div>
+
+    <div id="fileSelectContainer">
+      <input type="file" id="imageUpload" accept="image/*" multiple style="display: none;" />
+      <button id="chooseFileButton">Choose Files</button>
+      <div id="imagePreviews"></div>
+    </div>
+
+    <div id="actionButtonsContainer">
+      <button id="convertBtn">Create PDF</button>
+      <a id="downloadLink" style="display: none;">Download PDF</a>
+      <button id="clearImagesBtn">Clear All</button>
+    </div>
+
+    <div class="ad-container mid-page"></div>
+
+    <section class="centered-text-section">
+      <div class="text-content">
+        <h2>Why Use Our Free Image to PDF Converter?</h2>
+        <p>
+          Our online tool makes it incredibly easy to turn your images into professional PDF documents. Whether you have
+          JPEG photos, PNG graphics, or other image formats, you can convert them to PDF with just a few clicks. It's
+          perfect for consolidating multiple photos into a single document, archiving important scans, or creating
+          presentations.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-content-wrap">
+      <p class="copyright-info">&copy; <span id="currentYear"></span> Image to PDF Converter | All rights reserved.</p>
+      <nav class="footer-nav">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </nav>
+    </div>
+    <div class="ad-container footer-ad"></div>
+    <!-- To integrate footer ads here once we have adsense approval -->
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>

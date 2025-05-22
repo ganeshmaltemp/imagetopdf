@@ -1,0 +1,659 @@
+/* --- GLOBAL RESET & STICKY FOOTER SETUP --- */
+html {
+    height: 100%;
+    /* Make HTML element take full viewport height */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: #f4f4f4;
+
+    /* --- NEW: Sticky Footer Styling --- */
+    display: flex;
+    /* Make body a flex container */
+    flex-direction: column;
+    /* Stack children (header, main, footer) vertically */
+    min-height: 100vh;
+    /* Ensure body takes at least the full viewport height */
+}
+
+
+main {
+    padding: 2rem;
+
+    /* Remove fixed margin-top from previous footer as main's flex-grow will handle spacing */
+    margin-top: 0;
+    /* Ensure no extra top margin pushes content down unnecessarily */
+    margin-bottom: 0;
+    /* Ensure no extra bottom margin creates space */
+    /* It's good to keep max-width and center for main content for readability */
+    max-width: 1200px;
+    /* Or a suitable max-width for your content */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    /* Revert text alignment for main content if body was centered */
+    flex-grow: 1;
+}
+
+
+#ad-container {
+    margin: 2rem 0;
+    background: #ddd;
+    padding: 1rem;
+    min-height: 90px;
+}
+
+#fileSelectContainer {
+    width: clamp(300px, 80%, 1200px);
+    min-height: 300px;
+    margin: 20px auto;
+    background-color: #f5f0e1;
+    border-radius: 10px;
+    border: 3px solid #2c3e50;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Initial centering for "Choose Files" button */
+    align-items: center;
+    /* Initial centering for "Choose Files" button */
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+    /* Hide overflow if content is briefly larger during transitions */
+}
+
+/* Button styles */
+#chooseFileButton {
+    font-size: 18px;
+    padding: 12px 20px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    min-width: 200px;
+    /* Minimum width to ensure uniformity */
+    box-sizing: border-box;
+}
+
+/* Button wrapper centered */
+#buttonWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Removed height: 100%; - This is better handled by fileSelectContainer's justify/align */
+}
+
+/* Button hover effect */
+#chooseFileButton:hover {
+    background-color: #2980b9;
+}
+
+#imagePreviews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+    width: 100%;
+    max-height: calc(2 * 240px + 2 * 15px + 20px);
+    /* 2 rows * (imageBox height + gap) + some margin */
+    overflow-y: auto;
+    /* Enable scrolling for previews if they exceed max-height */
+    padding: 10px;
+    /* Padding for the preview area itself */
+    box-sizing: border-box;
+
+    /* CRITICAL FIX: Ensure images/addMoreBox are aligned to the start */
+    justify-content: flex-start;
+    /* Aligns items to the left in the row */
+    align-content: flex-start;
+    /* Aligns content rows to the top */
+}
+
+#uploadMessageContainer {
+    margin: 10px auto;
+    /* Adjust margin as needed */
+    width: clamp(300px, 80%, 1200px);
+    /* Match fileSelectContainer width */
+    text-align: center;
+    min-height: 20px;
+    /* Give it some vertical space even when empty */
+    box-sizing: border-box;
+    /* Include padding/border in the width */
+}
+
+.warning-message {
+    color: #e74c3c;
+    /* A distinct red for warnings */
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 5px;
+    background-color: #fce4e4;
+    /* Light red background for emphasis */
+    border-radius: 5px;
+}
+
+/* Individual image box */
+.imageBox {
+    width: 200px;
+    min-height: 240px;
+    /* Consistent height with addMoreBox */
+    background-color: #f5f0e1;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* Pushes image to top, controls to bottom */
+    position: relative;
+    padding: 10px;
+    /* Padding for the content inside the box */
+    box-sizing: border-box;
+    flex-shrink: 0;
+    /* Prevent shrinking when there are many items */
+}
+
+.imageBox img {
+    /* Adjustments for better filling */
+    width: 100%;
+    /* Make image take full width of its padded container */
+    height: 150px;
+    /* Fixed height for the image itself, allowing object-fit to work */
+    object-fit: cover;
+    /* If you want images to crop and fill the space: object-fit: cover; */
+    border-radius: 5px;
+    transition: transform 0.2s;
+    margin-bottom: 10px;
+    /* Space between image and buttons */
+}
+
+.imageBox img:hover {
+    transform: scale(1.03);
+}
+
+/* Rotation and Clear buttons container */
+.rotationControls {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    /* margin-top: 5px; Removed this as img has margin-bottom */
+    width: 100%;
+}
+
+/* Shared button styles */
+.rotateBtn,
+.clearBtn {
+    background-color: #e0e0e0;
+    color: #333;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.rotateBtn:hover,
+.clearBtn:hover {
+    background-color: #ccc;
+    border-color: #999;
+}
+
+/* Add More Box Styles */
+.addMoreBox {
+    width: 200px;
+    /* Match .imageBox width */
+    min-height: 240px;
+    /* Match .imageBox height */
+    background-color: #f5f0e1;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    /* To stack icon and text if needed, though only icon now */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px dashed #999;
+    /* Dashed border */
+    flex-shrink: 0;
+    /* Prevent shrinking */
+}
+
+.addMoreBox:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.02);
+}
+
+.addMoreBox .material-symbols-outlined.add-icon {
+    font-size: 80px;
+    color: #555;
+    /* Remove default margin-right if no text */
+    margin-right: 0;
+}
+
+/* Styles for the new action buttons container */
+#actionButtonsContainer {
+    margin-top: 30px;
+    /* Space from the file select container */
+    display: flex;
+    /* Enable flexbox */
+    justify-content: center;
+    /* Center the buttons initially */
+    gap: 50px;
+    /* Space between buttons */
+    flex-wrap: wrap;
+    /* Allow buttons to wrap on smaller screens */
+    /* position: relative; */
+}
+
+#convertBtn {
+    /* margin-top: 20px; */
+    padding: 12px 20px;
+    background-color: #2ecc71;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    min-width: 200px;
+    /* Minimum width to ensure uniformity */
+    box-sizing: border-box;
+}
+
+#convertBtn:hover {
+    background-color: #27ae60;
+}
+
+
+/* Styling for the "Clear All Images" button */
+#clearImagesBtn {
+    /* margin-top: 20px; */
+    /* margin-left: 10px; Adds space between the buttons */
+    padding: 12px 20px;
+    background-color: #e74c3c;
+    /* Red background */
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+    min-width: 200px;
+    /* Minimum width to ensure uniformity */
+    box-sizing: border-box;
+}
+
+#clearImagesBtn:hover {
+    background-color: #c0392b;
+    /* Darker red when hovered */
+}
+
+/* Styling for buttons to appear in a row */
+button {
+    display: inline-block;
+}
+
+/* Styling for the "Download PDF" button */
+#downloadLink {
+    display: none;
+    padding: 12px 20px;
+    background-color: #27ae60;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    /* Remove default anchor styling */
+    min-width: 200px;
+    /* Minimum width to ensure uniformity */
+    box-sizing: border-box;
+    /* margin-top: 20px; Match the margin of the other buttons */
+}
+
+/* Hover effect for the "Download PDF" button */
+#downloadLink:hover {
+    background-color: #298851;
+}
+
+.success-message {
+    color: #27ae60;
+    /* Green color, consistent with convert/download button */
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 5px;
+    background-color: #d4edda;
+    /* Light green background */
+    border-radius: 5px;
+}
+
+.info-message {
+    color: #2980b9;
+    /* A blue color, often used for info */
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 5px;
+    background-color: #e8f3fa;
+    /* Light blue background */
+    border-radius: 5px;
+}
+
+/* --- Header Styling --- */
+header {
+    background-color: #f9fbfc;
+    ;
+    /* Light background for header */
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Ensure the logo and text align nicely */
+.site-logo-link {
+    display: flex;
+    align-items: center;
+    /* Centers the logo and text vertically */
+    text-decoration: none;
+    /* Removes underline from the link */
+}
+
+.site-logo {
+    width: 40px;
+    /* Adjust as necessary for the logo size */
+    height: auto;
+    margin-right: 10px;
+    /* Space between the logo and the text */
+}
+
+.header-main-content {
+    display: flex;
+    /* Enable Flexbox */
+    justify-content: space-between;
+    /* Pushes items to opposite ends */
+    align-items: center;
+    /* Vertically centers items */
+    /* max-width: 1200px; Limit width for larger screens */
+    /* margin: 0 auto; Center the content */
+}
+
+.site-branding {
+    display: flex;
+    flex-direction: column;
+    /* Stacks H1 and tagline vertically */
+    align-items: flex-start;
+    /* Align text to the left */
+}
+
+.site-branding h1 {
+    margin: 0;
+    font-size: 1.8em;
+    /* Adjust as needed */
+    color: #333;
+    display: flex;
+    /* Make h1 a flex container for its inline contents */
+    flex-wrap: wrap;
+    /* Allow the content inside h1 to wrap to the next line */
+    align-items: baseline;
+    /* Aligns items to the baseline of the first line of text */
+}
+
+/* New styles for the tagline within H1 */
+.site-branding h1 .h1-tagline {
+    font-size: 0.7em;
+    /* Smaller relative to H1's base size */
+    font-weight: normal;
+    /* Override bold if H1 is bold */
+    color: #666;
+    /* Light grey color */
+    margin-left: 0.5em;
+    /* Small space after the main title */
+    display: flex;
+    /* Make it a flex container to align its own contents */
+    flex-wrap: wrap;
+    /* Allow the description to wrap */
+    align-items: baseline;
+}
+
+/* New styles for the descriptive text within the tagline */
+.site-branding h1 .h1-description {
+    font-size: 0.9em;
+    /* Smaller relative to h1-tagline, or you can make it even smaller */
+    color: #888;
+    /* Slightly lighter grey than the main tagline */
+    margin-left: 2em;
+    /* Space after "- Free & Easy Online Tool" */
+    line-height: 1.3;
+    /* Improve readability if it wraps */
+}
+
+.site-logo-link {
+    text-decoration: none;
+    /* Remove underline from title link */
+    color: inherit;
+    /* Inherit color from parent */
+}
+
+
+.main-nav a {
+    text-decoration: none;
+    /* Remove underline */
+    color: #007bff;
+    /* Link color */
+    font-weight: bold;
+    padding: 5px 10px;
+    /* Add some padding around the link */
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: #0056b3;
+    /* Darker color on hover */
+}
+
+/* --- Footer Styling --- */
+footer {
+    background-color: #615c5c;
+    /* Dark background for footer */
+    color: #fff;
+    padding: 20px 20px;
+    /* margin-top: 40px; Space above footer */
+    border-top: 1px solid #444;
+}
+
+.footer-content-wrap {
+    display: flex;
+    /* Enable Flexbox */
+    justify-content: space-between;
+    /* Pushes copyright left, nav right */
+    align-items: center;
+    /* Vertically centers items */
+    /* max-width: 1200px; Limit width for larger screens */
+    /* margin: 0 auto; Center the content */
+    flex-wrap: wrap;
+    /* Allow items to wrap on small screens */
+}
+
+.copyright-info {
+    margin: 0;
+    /* Remove default paragraph margin */
+    font-size: 0.85em;
+    color: #ccc;
+}
+
+.footer-nav a {
+    text-decoration: none;
+    /* Remove underline */
+    color: #fff;
+    font-size: 0.85em;
+    margin-left: 20px;
+    /* Space between footer links */
+    transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+    color: #007bff;
+    /* Highlight on hover */
+}
+
+/* --- Responsive Adjustments (Optional but Recommended) --- */
+@media (max-width: 768px) {
+    .header-main-content {
+        flex-direction: column;
+        /* Stack header items vertically on small screens */
+        text-align: center;
+    }
+
+    .site-branding {
+        align-items: center;
+        /* Center align text */
+        margin-bottom: 10px;
+    }
+
+    .site-branding h1 {
+        flex-direction: column;
+        /* Stack the main title and tagline parts vertically */
+        align-items: center;
+        /* Center align them */
+    }
+
+    .site-branding h1 .h1-tagline,
+    .site-branding h1 .h1-description {
+        margin-left: 0;
+        /* Remove horizontal margin when stacked */
+        margin-top: 5px;
+        /* Add vertical space */
+        text-align: center;
+        /* Ensure text is centered */
+    }
+
+    .main-nav {
+        margin-top: 10px;
+    }
+
+    .footer-content-wrap {
+        flex-direction: column;
+        /* Stack footer items vertically on small screens */
+        text-align: center;
+    }
+
+    .copyright-info {
+        margin-bottom: 10px;
+    }
+
+    .footer-nav a {
+        margin: 0 10px;
+        /* Adjust spacing for stacked links */
+        display: inline-block;
+        /* Make links block-level if you want vertical stack */
+        margin-bottom: 5px;
+        /* Add space between stacked links */
+    }
+}
+
+.centered-text-section {
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.centered-text-section h2 {
+    color: #555;
+    /* A softer dark grey for the heading */
+    /* Keep other styles like font-size, margin, etc., as desired */
+}
+
+.centered-text-section p {
+    color: #666;
+    /* A slightly lighter grey for body text */
+    /* Keep other styles like font-size, line-height, etc., as desired */
+}
+
+.main-intro-text {
+    font-size: 1.75em;
+    /* Increase font size */
+    font-weight: bold;
+    /* Optionally make the text bold */
+    color: #333;
+    /* Set text color if necessary */
+    margin-bottom: 10px;
+    /* Add space below the text */
+}
+
+
+/* --- Specific Styles for Static Content Pages (About Us, Privacy, Terms) --- */
+
+
+.static-page-content {
+    padding: 0 20px;
+    /* Adjust padding to remove the 'box' feel, just keep horizontal padding */
+    box-sizing: border-box;
+    /* max-width: 1200px; Set max-width to match 'main' for full integration */
+    /* margin: 0 auto; Center the content within 'main' and remove vertical margin for now */
+    background-color: transparent;
+    /* Remove background color */
+    box-shadow: none;
+    /* Remove shadow */
+    border-radius: 0;
+    /* Remove border-radius */
+    text-align: left;
+    /* Ensure text aligns left */
+    width: 100%;
+}
+
+.static-page-content h2 {
+    /* Style A for headings */
+    color: #444;
+    /* Slightly darker than #555, but softer than #333 */
+    font-size: 1.8em;
+    /* Slightly larger heading for these pages */
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    /* Subtle separator */
+    padding-bottom: 10px;
+}
+
+.static-page-content h3 {
+    /* If you use h3, define style A for it too */
+    color: #555;
+    font-size: 1.4em;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.static-page-content p {
+    /* Style B for paragraphs */
+    color: #555;
+    /* Softer text color */
+    line-height: 1.7;
+    /* Increased line height for readability */
+    margin-bottom: 1em;
+    /* Space between paragraphs */
+}
+
+.static-page-content ul {
+    /* Style B for lists (bullets) */
+    color: #555;
+    /* Same color as paragraphs */
+    list-style-type: disc;
+    /* Ensure standard bullets */
+    padding-left: 30px;
+    /* Indent lists */
+    margin-bottom: 1em;
+}
+
+.static-page-content ul li {
+    margin-bottom: 0.5em;
+    /* Space between list items */
+    line-height: 1.5;
+}
