@@ -657,3 +657,21 @@ footer {
     /* Space between list items */
     line-height: 1.5;
 }
+
+/* To this (applying to all your ad containers): */
+.ad-container {
+    margin: 2rem auto; /* Centers the ad container horizontally */
+    max-width: 1200px; /* Optional: Sets a max-width to align with your main content */
+    text-align: center; /* Centers the ad unit if it doesn't fill the container */
+    
+    /* Important for CLS and ad rendering: */
+    display: flex; /* Make it a flex container */
+    align-items: center; /* Vertically center ad if it's smaller than min-height */
+    justify-content: center; /* Horizontally center ad */
+    
+    /* Set a sensible minimum height based on the likely largest ad in that spot */
+    /* You might need different min-heights for different .ad-container classes */
+    min-height: 90px; /* A common height for horizontal banner ads (e.g., leaderboards) */
+    /* For a mid-page ad, if it's often a medium rectangle (300x250), you might use: */
+    /* min-height: 250px; */
+}
