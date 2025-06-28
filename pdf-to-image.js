@@ -1,5 +1,6 @@
 // PDF to Image Converter Tool JavaScript
 class PDFToImageConverter {
+    
     constructor() {
         this.pdfData = null;
         this.pageImages = [];
