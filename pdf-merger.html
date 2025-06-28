@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF Merger - Free Online Tool</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Free online PDF merger to combine multiple PDF files into one document. Merge PDFs easily and securely.">
+  <meta name="keywords"
+    content="pdf merger, combine pdf files, merge pdf online, pdf joiner, free pdf merger">
+
+  <!-- Open Graph for Social Sharing -->
+  <meta property="og:title" content="Free PDF Merger">
+  <meta property="og:description"
+    content="Combine multiple PDF files into one document. Free, secure, and easy to use.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quickimagetopdf.com/pdf-merger.html">
+  <meta property="og:image" content="https://quickimagetopdf.com/logo.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free PDF Merger">
+  <meta name="twitter:description" content="Combine multiple PDF files into one document. Free and secure.">
+  <meta name="twitter:image" content="https://quickimagetopdf.com/logo.jpg">
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="header-main-content">
+      <div class="site-branding">
+        <a href="/" class="site-logo-link">
+          <img src="logo.jpg" alt="Free Online File Tools Logo" class="site-logo" />
+          <h1>PDF Merger
+            <span class="h1-tagline">
+              (Free & Easy Online Tool)
+              <span class="h1-description">Combine multiple PDF files into a single document. Merge PDFs in any order you want.</span>
+            </span>
+          </h1>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <a href="/">Home</a>
+        <a href="about.html">About Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Tool Description -->
+    <section class="tool-description">
+      <h2>Merge PDF Files</h2>
+      <p>Combine multiple PDF files into a single document. Merge PDFs in any order you want with our simple drag-and-drop interface.</p>
+    </section>
+
+    <!-- PDF Merger Tool -->
+    <div class="merger-tool">
+      <div class="file-upload-area">
+        <input type="file" id="pdfInput" accept=".pdf" multiple style="display: none;" />
+        <div class="upload-zone" id="uploadZone">
+          <div class="upload-icon">📁</div>
+          <h3>Drop PDF files here or click to upload</h3>
+          <p>Select multiple PDF files to merge into one document</p>
+          <button class="upload-btn">Choose Files</button>
+        </div>
+      </div>
+
+      <div id="pdfList" class="pdf-list"></div>
+
+      <div class="action-buttons">
+        <button id="mergeBtn" class="primary-btn" style="display: none;">Merge PDFs</button>
+        <button id="clearAllBtn" class="secondary-btn" style="display: none;">Clear All</button>
+      </div>
+
+      <div id="mergeProgress" class="merge-progress" style="display: none;">
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <p id="progressText">Merging PDFs...</p>
+      </div>
+
+      <div id="mergeResult" class="merge-result" style="display: none;">
+        <h3>Merge Complete!</h3>
+        <p>Your PDF files have been successfully merged.</p>
+        <button id="downloadBtn" class="primary-btn">Download Merged PDF</button>
+      </div>
+    </div>
+
+    <!-- How to Use Section -->
+    <section class="how-to-use">
+      <h2>How to Merge PDF Files</h2>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Upload PDFs</h3>
+          <p>Drag and drop your PDF files or click to select multiple files. You can upload as many as you need.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Arrange Order</h3>
+          <p>Use drag and drop to arrange your PDFs in the desired order for the final document.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Merge</h3>
+          <p>Click "Merge PDFs" to combine all your files into a single PDF document.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Download</h3>
+          <p>Download your merged PDF file instantly. No watermarks, no registration required.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="tool-features">
+      <h2>Why Choose Our PDF Merger?</h2>
+      <div class="features-list">
+        <div class="feature">
+          <span class="feature-icon">⚡</span>
+          <div>
+            <h3>Lightning Fast</h3>
+            <p>Merge PDF files instantly with our optimized processing engine.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">🔒</span>
+          <div>
+            <h3>100% Secure</h3>
+            <p>Your PDF files never leave your device. All merging happens in your browser.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">🎯</span>
+          <div>
+            <h3>Easy Reordering</h3>
+            <p>Drag and drop to arrange your PDFs in the perfect order before merging.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">📱</span>
+          <div>
+            <h3>Mobile Friendly</h3>
+            <p>Works perfectly on all devices - desktop, tablet, and mobile phones.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">🚫</span>
+          <div>
+            <h3>No Watermarks</h3>
+            <p>Get clean, professional PDFs without any watermarks or branding.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">💯</span>
+          <h3>Completely Free</h3>
+          <p>No hidden costs, no premium features. Everything is free forever.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content-wrap">
+      <p class="copyright-info">&copy; <span id="currentYear"></span> Free Online File Tools | All rights reserved.</p>
+      <nav class="footer-nav">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="pdf-merger.js"></script>
+  <script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html> 
