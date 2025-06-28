@@ -1,5 +1,6 @@
 // PDF Merger Tool JavaScript
 class PDFMerger {
+    
     constructor() {
         this.pdfs = [];
         this.initializeElements();
