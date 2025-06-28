@@ -1,4 +1,5 @@
 class PDFSplitter {
+    
     constructor() {
         this.pdfData = null;
         this.splitResult = null;
