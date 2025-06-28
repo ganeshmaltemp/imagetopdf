@@ -1,5 +1,6 @@
 // Image Compressor Tool JavaScript
 class ImageCompressor {
+    
     constructor() {
         this.images = [];
         this.quality = 80;
