@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free PDF Splitter - Split PDF Files Online</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Split PDF files online. Extract specific pages or ranges from your PDF documents. Free, secure, and easy to use.">
+  <meta name="keywords"
+    content="pdf splitter, split pdf, extract pdf pages, pdf page extractor, free pdf splitter">
+
+  <!-- Open Graph for Social Sharing -->
+  <meta property="og:title" content="Free PDF Splitter">
+  <meta property="og:description"
+    content="Split PDF files and extract specific pages. Free, secure, and easy to use.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quickimagetopdf.com/pdf-splitter.html">
+  <meta property="og:image" content="https://quickimagetopdf.com/logo.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free PDF Splitter">
+  <meta name="twitter:description" content="Split PDF files and extract specific pages. Free and secure.">
+  <meta name="twitter:image" content="https://quickimagetopdf.com/logo.jpg">
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="header-main-content">
+      <div class="site-branding">
+        <a href="/" class="site-logo-link">
+          <img src="logo.jpg" alt="Free Online File Tools Logo" class="site-logo" />
+          <h1>PDF Splitter
+            <span class="h1-tagline">
+              (Free & Easy Online Tool)
+              <span class="h1-description">Extract specific pages or ranges from your PDF documents. Split large PDFs into smaller files.</span>
+            </span>
+          </h1>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <a href="/">Home</a>
+        <a href="about.html">About Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Tool Description -->
+    <section class="tool-description">
+      <h2>Split PDF Files</h2>
+      <p>Extract specific pages or ranges from your PDF documents. Split large PDFs into smaller, manageable files.</p>
+    </section>
+
+    <!-- PDF Splitter Tool -->
+    <div class="splitter-tool">
+      <div class="file-upload-area">
+        <input type="file" id="pdfInput" accept=".pdf" style="display: none;" />
+        <div class="upload-zone" id="uploadZone">
+          <div class="upload-icon">📁</div>
+          <h3>Drop PDF here or click to upload</h3>
+          <p>Select a PDF file to split into smaller parts</p>
+          <button class="upload-btn">Choose PDF</button>
+        </div>
+      </div>
+
+      <div id="pdfInfo" class="pdf-info" style="display: none;">
+        <h3>PDF Information</h3>
+        <div id="pdfDetails"></div>
+      </div>
+
+      <div id="splitterOptions" class="splitter-options" style="display: none;">
+        <h3>Split Options</h3>
+        <div class="option-group">
+          <label for="pageRange">Page Range:</label>
+          <input type="text" id="pageRange" placeholder="e.g., 1-5, 7, 10-15" />
+          <p class="help-text">Enter page numbers or ranges separated by commas (e.g., 1-5, 7, 10-15)</p>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button id="splitBtn" class="primary-btn" style="display: none;">Split PDF</button>
+        <button id="clearBtn" class="secondary-btn" style="display: none;">Clear</button>
+      </div>
+
+      <div id="splitProgress" class="split-progress" style="display: none;">
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <p id="progressText">Splitting PDF...</p>
+      </div>
+
+      <div id="splitResult" class="split-result" style="display: none;">
+        <h3>Split Complete!</h3>
+        <p>Your PDF has been successfully split.</p>
+        <button id="downloadBtn" class="primary-btn">Download Split PDF</button>
+      </div>
+    </div>
+
+    <!-- How to Use Section -->
+    <section class="how-to-use">
+      <h2>How to Split PDF Files</h2>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Upload PDF</h3>
+          <p>Drag and drop your PDF file or click to select it. We support all standard PDF formats.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Enter Page Range</h3>
+          <p>Specify which pages you want to extract using page numbers or ranges (e.g., 1-5, 7, 10-15).</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Split</h3>
+          <p>Click "Split PDF" to extract the specified pages into a new PDF document.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Download</h3>
+          <p>Download your split PDF file instantly. No watermarks, no registration required.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="tool-features">
+      <h2>Why Choose Our PDF Splitter?</h2>
+      <div class="features-list">
+        <div class="feature">
+          <span class="feature-icon">⚡</span>
+          <div>
+            <h3>Lightning Fast</h3>
+            <p>Split PDF files instantly with our optimized processing engine.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">🔒</span>
+          <div>
+            <h3>100% Secure</h3>
+            <p>Your PDF never leaves your device. All splitting happens in your browser.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">🎯</span>
+          <div>
+            <h3>Flexible Extraction</h3>
+            <p>Extract specific pages, ranges, or combinations to get exactly what you need.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">📱</span>
+          <div>
+            <h3>Mobile Friendly</h3>
+            <p>Works perfectly on all devices - desktop, tablet, and mobile phones.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">🚫</span>
+          <div>
+            <h3>No Watermarks</h3>
+            <p>Get clean, professional PDFs without any watermarks or branding.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">💯</span>
+          <h3>Completely Free</h3>
+          <p>No hidden costs, no premium features. Everything is free forever.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content-wrap">
+      <p class="copyright-info">&copy; <span id="currentYear"></span> Free Online File Tools | All rights reserved.</p>
+      <nav class="footer-nav">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="pdf-splitter.js"></script>
+  <script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html> 
