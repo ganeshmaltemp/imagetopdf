@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free PDF to Image Converter - Convert PDF Pages to Images Online</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Convert PDF files to images online. Transform all pages of your PDF to JPEG, PNG, or WebP format. Free, secure, and no registration required.">
+  <meta name="keywords"
+    content="pdf to image, pdf to jpg, pdf to png, extract images from pdf, convert pdf pages to images">
+
+  <!-- Open Graph for Social Sharing -->
+  <meta property="og:title" content="Free PDF to Image Converter">
+  <meta property="og:description"
+    content="Convert PDF pages to images or extract images from PDF files. Free, secure, and easy to use.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quickimagetopdf.com/pdf-to-image.html">
+  <meta property="og:image" content="https://quickimagetopdf.com/logo.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free PDF to Image Converter">
+  <meta name="twitter:description" content="Convert PDF pages to images. Free and secure.">
+  <meta name="twitter:image" content="https://quickimagetopdf.com/logo.jpg">
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+  <script>
+    // Set up PDF.js worker
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="header-main-content">
+      <div class="site-branding">
+        <a href="/" class="site-logo-link">
+          <img src="logo.jpg" alt="Free Online File Tools Logo" class="site-logo" />
+          <h1>PDF to Image Converter
+            <span class="h1-tagline">
+              (Free & Easy Online Tool)
+              <span class="h1-description">Extract images from PDF files or convert PDF pages to high-quality images with customizable settings.</span>
+            </span>
+          </h1>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <a href="/">Home</a>
+        <a href="about.html">About Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Tool Description -->
+    <section class="tool-description">
+      <h2>Convert PDF to Images</h2>
+      <p>Extract images from PDF files or convert PDF pages to high-quality images. Choose your preferred format and quality settings.</p>
+    </section>
+
+    <!-- PDF to Image Tool -->
+    <div class="conversion-tool">
+      <div class="file-upload-area">
+        <input type="file" id="pdfInput" accept=".pdf" style="display: none;" />
+        <div class="upload-zone" id="uploadZone">
+          <div class="upload-icon">📁</div>
+          <h3>Drop PDF here or click to upload</h3>
+          <p>Select a PDF file to convert to images</p>
+          <button class="upload-btn">Choose PDF</button>
+        </div>
+      </div>
+
+      <div id="pdfInfo" class="pdf-info" style="display: none;">
+        <h3>PDF Information</h3>
+        <div id="pdfDetails"></div>
+      </div>
+
+      <div class="conversion-options">
+        <div class="option-group">
+          <label for="imageFormat">Image Format:</label>
+          <select id="imageFormat">
+            <option value="jpeg">JPEG</option>
+            <option value="png">PNG</option>
+            <option value="webp">WebP</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label for="imageQuality">Quality:</label>
+          <input type="range" id="imageQuality" min="10" max="100" value="80">
+          <span id="qualityValue">80%</span>
+        </div>
+        <div class="option-group">
+          <label for="imageScale">Scale:</label>
+          <input type="range" id="imageScale" min="50" max="200" value="100">
+          <span id="scaleValue">100%</span>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button id="convertBtn" class="primary-btn" style="display: none;">Convert to Images</button>
+        <button id="clearBtn" class="secondary-btn" style="display: none;">Clear</button>
+      </div>
+
+      <div id="conversionProgress" class="conversion-progress" style="display: none;">
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <p id="progressText">Converting...</p>
+      </div>
+
+      <div id="results" class="results" style="display: none;">
+        <h3>Conversion Complete!</h3>
+        <div id="imageResults"></div>
+        <button id="downloadAllBtn" class="primary-btn">Download All Images</button>
+      </div>
+    </div>
+
+    <!-- How to Use Section -->
+    <section class="how-to-use">
+      <h2>How to Convert PDF to Images</h2>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Upload PDF</h3>
+          <p>Drag and drop your PDF file or click to select it. We support all standard PDF formats.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Choose Settings</h3>
+          <p>Select your preferred image format (JPEG, PNG, or WebP), quality, and scale settings.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Convert</h3>
+          <p>Click "Convert to Images" to process your PDF. Each page becomes a separate image.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Download</h3>
+          <p>Download individual images or all at once. No watermarks, no registration required.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="tool-features">
+      <h2>Why Choose Our PDF to Image Converter?</h2>
+      <div class="features-list">
+        <div class="feature">
+          <span class="feature-icon">⚡</span>
+          <div>
+            <h3>Lightning Fast</h3>
+            <p>Convert PDF pages to images instantly with our optimized processing engine.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">🔒</span>
+          <div>
+            <h3>100% Secure</h3>
+            <p>Your PDF never leaves your device. All conversion happens in your browser.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">🎛️</span>
+          <div>
+            <h3>Quality Control</h3>
+            <p>Adjust format, quality, and scale to get exactly the results you need.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">📱</span>
+          <div>
+            <h3>Mobile Friendly</h3>
+            <p>Works perfectly on all devices - desktop, tablet, and mobile phones.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">🚫</span>
+          <div>
+            <h3>No Watermarks</h3>
+            <p>Get clean, professional images without any watermarks or branding.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">💯</span>
+          <h3>Completely Free</h3>
+          <p>No hidden costs, no premium features. Everything is free forever.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content-wrap">
+      <p class="copyright-info">&copy; <span id="currentYear"></span> Free Online File Tools | All rights reserved.</p>
+      <nav class="footer-nav">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="pdf-to-image.js"></script>
+  <script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html> 
