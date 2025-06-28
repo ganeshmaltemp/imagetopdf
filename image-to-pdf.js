@@ -1,5 +1,4 @@
 class ImageToPdfConverter {
-    
     constructor() {
         this.images = [];
         this.initializeElements();
